@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio Profesional - Muhammad Haikal Alkaffi</title>
+  
+  <!-- Font & Icon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card-bg: rgba(22, 30, 46, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    /* BENTO GRID LAYOUT */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    /* CARD STYLES */
+    .bento-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 1.75rem;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    /* GRID SPAN */
+    .col-span-1 { grid-column: span 1; }
+    .col-span-2 { grid-column: span 2; }
+    .col-span-3 { grid-column: span 3; }
+    .col-span-4 { grid-column: span 4; }
+
+    /* CARD 1: HERO PROFILE */
+    .profile-card {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
+    }
+
+    .profile-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .profile-img-box {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 3px solid rgba(59, 130, 246, 0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(34, 197, 94, 0.1);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      padding: 0.3rem 0.75rem;
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #22c55e;
+    }
+
+    .profile-header h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.5px;
+    }
+
+    .profile-header h1 span {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .profile-header p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    /* CARD HEADERS & TITLES */
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-title i.link-icon {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      transition: transform 0.3s;
+    }
+
+    .bento-card:hover .card-title i.link-icon {
+      transform: translate(3px, -3px);
+      color: var(--accent);
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    /* STATS CARD */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      height: 100%;
+      align-content: center;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* SKILLS CARD */
+    .skills-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .skill-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      padding: 0.4rem 0.8rem;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* SERVICES CARD */
+    .services-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.75rem;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+    }
+
+    .service-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--accent);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .service-text h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .service-text p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* EXPERIENCE & EDUCATION TIMELINE */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .timeline-item {
+      border-left: 2px solid var(--accent);
+      padding-left: 0.8rem;
+      position: relative;
+    }
+
+    .timeline-date {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .timeline-role {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .timeline-company {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* PROJECT CARDS */
+    .project-preview {
+      width: 100%;
+      height: 120px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      margin-top: 0.8rem;
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* CERTIFICATES */
+    .cert-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+
+    .cert-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.6rem 0.8rem;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      font-size: 0.82rem;
+    }
+
+    /* SPOTIFY / WIDGET CARD */
+    .spotify-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(30, 215, 96, 0.08);
+      border-color: rgba(30, 215, 96, 0.2);
+    }
+
+    .spotify-icon {
+      font-size: 2rem;
+      color: #1db954;
+    }
+
+    /* TESTIMONIAL */
+    .quote-box {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 0.8rem;
+      line-height: 1.4;
+      border-left: 3px solid var(--accent);
+      padding-left: 0.8rem;
+    }
+
+    .quote-author {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    /* SOCIAL & CONTACT */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+
+    .social-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      padding: 0.65rem;
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .social-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .cta-btn {
+      background: var(--accent-gradient);
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      transition: opacity 0.3s;
+    }
+
+    .cta-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* FOOTER */
+    .footer-text {
+      text-align: center;
+      margin-top: 2.5rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* RESPONSIVE DESIGN FOR MOBILE */
+    @media (max-width: 900px) {
+      .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .col-span-3, .col-span-4 {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+      .col-span-1, .col-span-2, .col-span-3, .col-span-4 {
+        grid-column: span 1;
+      }
+      .profile-wrapper {
+        flex-direction: column;
+        text-align: center;
+      }
+      .profile-header h1 {
+        font-size: 1.5rem;
+      }
+      .status-badge {
+        margin: 0 auto 0.8rem auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="bento-grid">
+
+      <!-- 1. HERO PROFILE CARD -->
+      <div class="bento-card col-span-3 profile-card">
+        <div>
+          <div class="status-badge">
+            <span class="status-dot"></span> Siap Menerima Proyek Baru
+          </div>
+          
+          <div class="profile-wrapper">
+            <div class="profile-img-box">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop" alt="Foto Profil" class="profile-img">
+            </div>
+
+            <div class="profile-header">
+              <h1>Halo, Saya <span>Muhammad Haikal Alkaffi</span></h1>
+              <p>Seorang <b>Full-Stack Developer & UI/UX Designer</b> yang berfokus membangun produk digital modern, sistem pembayaran terintegrasi, serta aplikasi web yang responsif dan fungsional.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <a href="#contact" class="cta-btn">
+            <i class="fa-solid fa-paper-plane"></i> Hubungi Saya Sekarang
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. QUICK STATS CARD -->
+      <div class="bento-card col-span-1">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">3+</span>
+            <p class="stat-label">Tahun Exp.</p>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">120+</span>
+            <p class="stat-label">Proyek Selesai</p>
+          </div>
+          <div class="stat-item" style="margin-top: 0.5rem;">
+            <span class="stat-number">99%</span>
+            <p class="stat-label">Klien Puas</p>
+          </div>
+          <div class="stat-item" style="margin-top: 0.5rem;">
+            <span class="stat-number">15+</span>
+            <p class="stat-label">Sertifikasi</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. KEAHLIAN & TECH STACK CARD -->
+      <div class="bento-card col-span-2">
+        <div>
+          <div class="card-title">Keahlian & Alat</div>
+          <p class="card-desc">Teknologi utama yang saya kuasai dan gunakan sehari-hari:</p>
+          <div class="skills-wrapper">
+            <span class="skill-pill"><i class="fa-brands fa-html5" style="color: #e34f26;"></i> HTML/CSS</span>
+            <span class="skill-pill"><i class="fa-brands fa-js" style="color: #f7df1e;"></i> JavaScript</span>
+            <span class="skill-pill"><i class="fa-brands fa-react" style="color: #61dafb;"></i> React.js</span>
+            <span class="skill-pill"><i class="fa-brands fa-node-js" style="color: #68a063;"></i> Node.js</span>
+            <span class="skill-pill"><i class="fa-brands fa-php" style="color: #777bb4;"></i> PHP / Laravel</span>
+            <span class="skill-pill"><i class="fa-brands fa-figma" style="color: #f24e1e;"></i> Figma UI/UX</span>
+            <span class="skill-pill"><i class="fa-brands fa-git-alt" style="color: #f05032;"></i> Git & GitHub</span>
+            <span class="skill-pill"><i class="fa-solid fa-database" style="color: #00758f;"></i> MySQL / Postgres</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. LAYANAN YANG DITAWARKAN CARD -->
+      <div class="bento-card col-span-2">
+        <div>
+          <div class="card-title">Layanan & Jasa</div>
+          <p class="card-desc">Solusi digital yang bisa saya kerjakan untuk bisnis Anda:</p>
+          <div class="services-list">
+            <div class="service-item">
+              <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+              <div class="service-text">
+                <h4>Web & App Development</h4>
+                <p>Membuat website modern, toko online, & web app dari awal.</p>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon"><i class="fa-solid fa-pen-nib"></i></div>
+              <div class="service-text">
+                <h4>UI/UX & Graphic Design</h4>
+                <p>Merancang antarmuka aplikasi yang mudah dan nyaman digunakan.</p>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon"><i class="fa-solid fa-qrcode"></i></div>
+              <div class="service-text">
+                <h4>Integrasi E-Payment / QRIS</h4>
+                <p>Menghubungkan payment gateway untuk transaksi otomatis.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. PROYEK 1: QRIS / E-COMMERCE -->
+      <div class="bento-card col-span-2">
+        <a href="#" style="text-decoration: none; color: inherit;">
+          <div class="card-title">
+            Sistem Pembayaran QRIS & Toko Online
+            <i class="fa-solid fa-arrow-up-right-from-square link-icon"></i>
+          </div>
+          <p class="card-desc">Integrasi gerbang pembayaran digital otomatis untuk toko online UMKM.</p>
+          <div class="project-preview">
+            <img src="1000148439.jpg" alt="Preview Pembayaran QRIS" onerror="this.onerror=null; this.parentNode.innerHTML='<div style=\'color:var(--text-muted); font-size:0.85rem;\'>[ Gambar Pembayaran QRIS ]</div>';">
+          </div>
+        </a>
+      </div>
+
+      <!-- 6. PROYEK 2: MANAJEMEN TUGAS -->
+      <div class="bento-card col-span-2">
+        <a href="#" style="text-decoration: none; color: inherit;">
+          <div class="card-title">
+            Aplikasi Manajemen Tugas (Task Manager)
+            <i class="fa-solid fa-arrow-up-right-from-square link-icon"></i>
+          </div>
+          <p class="card-desc">Web app produktivitas interaktif dengan fitur kategori, drag & drop, dan pengingat.</p>
+          <div class="project-preview">
+            <div style="color: var(--text-muted); font-size: 0.85rem;">[ Preview Aplikasi Manajemen Tugas ]</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- 7. PENGALAMAN KERJA / TIMELINE -->
+      <div class="bento-card col-span-2">
+        <div>
+          <div class="card-title">Pengalaman Kerja</div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">2023 - Sekarang</div>
+              <div class="timeline-role">Senior Full-Stack Developer</div>
+              <div class="timeline-company">Freelance / Digital Studio</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2021 - 2023</div>
+              <div class="timeline-role">Frontend Web Developer</div>
+              <div class="timeline-company">PT Media Creative Tech</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. SERTIFIKASI CARD -->
+      <div class="bento-card col-span-2">
+        <div>
+          <div class="card-title">Lisensi & Sertifikasi</div>
+          <div class="cert-grid">
+            <div class="cert-item">
+              <span><i class="fa-solid fa-certificate" style="color: var(--accent); margin-right: 6px;"></i> Full Stack Web Dev</span>
+              <span style="color: var(--text-muted);">Dicoding</span>
+            </div>
+            <div class="cert-item">
+              <span><i class="fa-solid fa-certificate" style="color: var(--accent); margin-right: 6px;"></i> UI/UX Design Mastery</span>
+              <span style="color: var(--text-muted);">BuildWithAngga</span>
+            </div>
+            <div class="cert-item">
+              <span><i class="fa-solid fa-certificate" style="color: var(--accent); margin-right: 6px;"></i> JavaScript Algorithms</span>
+              <span style="color: var(--text-muted);">FreeCodeCamp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. TESTIMONI KLIEN -->
+      <div class="bento-card col-span-2">
+        <div>
+          <div class="card-title">Apa Kata Klien?</div>
+          <div class="quote-box">
+            "Hasil pengerjaan website toko online dan integrasi sistem pembayaran sangat cepat, rapi, dan responsif. Sangat direkomendasikan!"
+            <div class="quote-author">— Budi Santoso, Owner E-Commerce</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. WIDGET SPOTIFY / SEDANG MENDENGARKAN -->
+      <div class="bento-card col-span-2 spotify-card">
+        <i class="fa-brands fa-spotify spotify-icon"></i>
+        <div>
+          <div style="font-size: 0.75rem; color: #1db954; font-weight: 700; text-transform: uppercase;">Sedang Didengarkan</div>
+          <div style="font-weight: 700; font-size: 0.95rem;">Lofi Beats for Coding & Focus</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">Spotify Music Player</div>
+        </div>
+      </div>
+
+      <!-- 11. KONTAK & MEDIA SOSIAL CARD -->
+      <div class="bento-card col-span-4" id="contact">
+        <div class="card-title">Mari Bekerja Sama / Hubungi Saya</div>
+        <p class="card-desc">Tertarik membuat website atau aplikasi? Kirim pesan langsung melalui media sosial atau email berikut:</p>
+        <div class="social-grid" style="grid-template-columns: repeat(4, 1fr);">
+          <a href="https://github.com" target="_blank" class="social-btn">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="social-btn">
+            <i class="fa-brands fa-linkedin"></i> LinkedIn
+          </a>
+          <a href="https://instagram.com" target="_blank" class="social-btn">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </a>
+          <a href="mailto:emailanda@example.com" class="social-btn" style="border-color: rgba(59, 130, 246, 0.4); background: rgba(59, 130, 246, 0.1);">
+            <i class="fa-solid fa-envelope" style="color: var(--accent);"></i> Email Lang
